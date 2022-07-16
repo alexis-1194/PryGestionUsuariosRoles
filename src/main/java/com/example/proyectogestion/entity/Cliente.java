@@ -13,6 +13,6 @@ public class Cliente {
 
     @JsonProperty("cliente_id")
     private BigDecimal clienteId;
-    @JsonProperty("nombres_apellidos")
-    private String nombresApellidos;
+    @JsonProperty("nombres")
+    private String nombres;
 }
