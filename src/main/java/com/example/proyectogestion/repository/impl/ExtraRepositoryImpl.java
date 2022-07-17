@@ -5,6 +5,7 @@ import com.example.proyectogestion.util.Constantes;
 import org.hibernate.Session;
 import org.hibernate.procedure.ProcedureCall;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.ParameterMode;
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
+@Transactional
 public class ExtraRepositoryImpl implements ExtraRepository {
 
     @PersistenceContext
@@ -25,10 +27,11 @@ public class ExtraRepositoryImpl implements ExtraRepository {
         ProcedureCall call = s.createStoredProcedureCall(Constantes.SP_LIST_CLIENTES);
         call.registerParameter(1,Integer.class, ParameterMode.IN);
         call.setParameter(1, p_limit);
-        call.registerParameter(2, Integer.class,ParameterMode.OUT);
+        call.registerParameter(2, String.class,ParameterMode.OUT);
         call.registerParameter(3, String.class,ParameterMode.OUT);
         call.registerParameter(4, Integer.class,ParameterMode.OUT);
-        call.registerParameter(5, Class.class,ParameterMode.OUT);
+        call.registerParameter(5, Class.class,ParameterMode.REF_CURSOR);
+        call.execute();
         Map<String, Object> result = new HashMap<>();
         result.put("OUT_CODIGO",call.getOutputParameterValue(2));
         result.put("OUT_MSG",call.getOutputParameterValue(3));

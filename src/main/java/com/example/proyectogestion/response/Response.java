@@ -16,7 +16,7 @@ import java.util.Map;
 public class Response {
 
     protected LocalDateTime timeStamp;
-    protected Integer statusCode;
+    protected String statusCode;
     protected HttpStatus httpStatus;
     protected String reason;
     protected String message;
