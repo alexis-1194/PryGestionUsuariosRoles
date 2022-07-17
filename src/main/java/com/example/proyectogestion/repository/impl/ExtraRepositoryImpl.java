@@ -2,6 +2,7 @@ package com.example.proyectogestion.repository.impl;
 
 import com.example.proyectogestion.repository.ExtraRepository;
 import com.example.proyectogestion.util.Constantes;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
 import org.hibernate.procedure.ProcedureCall;
 import org.springframework.stereotype.Repository;
@@ -16,6 +17,7 @@ import java.util.Map;
 
 @Repository
 @Transactional
+@Slf4j
 public class ExtraRepositoryImpl implements ExtraRepository {
 
     @PersistenceContext
@@ -23,6 +25,7 @@ public class ExtraRepositoryImpl implements ExtraRepository {
 
     @Override
     public Map<String, Object> getClientes(Integer p_limit) {
+        log.info("p_limit: {}", p_limit);
         Session s = em.unwrap(Session.class);
         ProcedureCall call = s.createStoredProcedureCall(Constantes.SP_LIST_CLIENTES);
         call.registerParameter(1,Integer.class, ParameterMode.IN);
@@ -43,14 +46,16 @@ public class ExtraRepositoryImpl implements ExtraRepository {
 
     @Override
     public Map<String, Object> getCategorias(Integer p_limit) {
+        log.info("p_limit: {}", p_limit);
         Session s = em.unwrap(Session.class);
         ProcedureCall call = s.createStoredProcedureCall(Constantes.SP_LIST_CATEGORIAS);
         call.registerParameter(1,Integer.class, ParameterMode.IN);
         call.setParameter(1, p_limit);
-        call.registerParameter(2, Integer.class,ParameterMode.OUT);
+        call.registerParameter(2, String.class,ParameterMode.OUT);
         call.registerParameter(3, String.class,ParameterMode.OUT);
         call.registerParameter(4, Integer.class,ParameterMode.OUT);
-        call.registerParameter(5, Class.class,ParameterMode.OUT);
+        call.registerParameter(5, Class.class,ParameterMode.REF_CURSOR);
+        call.execute();
         Map<String, Object> result = new HashMap<>();
         result.put("OUT_CODIGO",call.getOutputParameterValue(2));
         result.put("OUT_MSG",call.getOutputParameterValue(3));
@@ -66,10 +71,11 @@ public class ExtraRepositoryImpl implements ExtraRepository {
         ProcedureCall call = s.createStoredProcedureCall(Constantes.SP_LIST_PRODUCTOS);
         call.registerParameter(1,Integer.class, ParameterMode.IN);
         call.setParameter(1, p_limit);
-        call.registerParameter(2, Integer.class,ParameterMode.OUT);
+        call.registerParameter(2, String.class,ParameterMode.OUT);
         call.registerParameter(3, String.class,ParameterMode.OUT);
         call.registerParameter(4, Integer.class,ParameterMode.OUT);
-        call.registerParameter(5, Class.class,ParameterMode.OUT);
+        call.registerParameter(5, Class.class,ParameterMode.REF_CURSOR);
+        call.execute();
         Map<String, Object> result = new HashMap<>();
         result.put("OUT_CODIGO",call.getOutputParameterValue(2));
         result.put("OUT_MSG",call.getOutputParameterValue(3));
