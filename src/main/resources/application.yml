@@ -4,9 +4,9 @@ spring:
     #    username: gestion
     #    password: gestion
     #    url: jdbc:oracle:thin:@localhost:1521:orcl
-    url: jdbc:oracle:thin:@localhost:1521/ORCL
-    username: yalerolev1
-    password: yalerolev1
+#    url: jdbc:oracle:thin:@localhost:1521/ORCL
+#    username: yalerolev1
+#    password: yalerolev1
     #    username: gestion
     #    password: gestion
 

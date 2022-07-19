@@ -15,12 +15,12 @@ public class Categoria {
     @JsonProperty("categoria_id")
     private BigDecimal categoriaId;
     @JsonProperty("categoria_des")
-    private BigDecimal categoriaDes;
+    private String categoriaDes;
 
     public Categoria (Object p){
         Object[] arr = (Object[]) p;
         this.categoriaId = (BigDecimal) arr[0];
-        this.categoriaDes = (BigDecimal) arr[1];
+        this.categoriaDes = (String) arr[1];
     }
 
 }

@@ -30,6 +30,9 @@ public class ExtraController {
         return extraService.getProdcutos(limit);
     }
 
-
+    @GetMapping(value = "/yale", produces = "application/json")
+    public String test(){
+      return  "Gordita te extraño";
+    }
 
 }
