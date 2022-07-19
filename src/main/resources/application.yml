@@ -1,5 +1,5 @@
 spring:
-  datasource:
+#  datasource:
     #    url: jdbc:oracle:thin:@localhost:1521/xe
     #    username: gestion
     #    password: gestion
@@ -10,13 +10,13 @@ spring:
     #    username: gestion
     #    password: gestion
 
-    driver-class-name: oracle.jdbc.driver.OracleDriver
+#    driver-class-name: oracle.jdbc.driver.OracleDriver
   application:
     name: ClientesBackend
 
-  jpa:
-    show-sql: true
-    database-platform: org.hibernate.dialect.Oracle10gDialect
+#  jpa:
+#    show-sql: true
+#    database-platform: org.hibernate.dialect.Oracle10gDialect
 
 server:
   port: 8082
