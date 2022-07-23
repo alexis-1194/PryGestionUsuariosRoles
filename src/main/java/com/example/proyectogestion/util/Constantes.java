@@ -9,7 +9,9 @@ public class Constantes {
 
     public static final String SP_LIST_JUEGOS = "PKG_PRUEBAS_GENERALES.SP_LIST_JUEGOS";
     public static final String SP_LIST_ALMACEN = "PKG_PRUEBAS_GENERALES.SP_LIST_ALMACEN";
-    public static final String SP_LIST_PROVEEDOR = "PKG_PRUEBAS_GENERALES.SP_LIST_PROVEEDOR";
+    public static final String SP_LIST_PROVEEDOR = "PKG_PRUEBAS_GENERALES.SP_LIST_PROVEEDORES";
+
+    public static final String sp_usuario_exists = "PKG_USUARIOS.sp_usuario_exists";
 
     /*
     * #  datasource:
