@@ -13,6 +13,10 @@ public class Constantes {
 
     public static final String sp_usuario_exists = "PKG_PRUEBAS_GENERALES.sp_usuario_exists";
     public static final String sp_usuario_insert = "PKG_PRUEBAS_GENERALES.sp_ins_persona_usuario";
+    public static final String sp_guardar_token = "PKG_PRUEBAS_GENERALES.sp_insup_confirmation_token";
+
+    //10 segundos
+    public static final int EXPIRATION_TIME = 10000;
 
     /*
     * #  datasource:
