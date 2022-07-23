@@ -20,7 +20,11 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
     @Override
     public Map<String,Object> register(RegisterUserBean registerUserBean) {
         Session s = em.unwrap(Session.class);
-        ProcedureCall call = s.createStoredProcedureCall(Constantes.SP_REGISTER_USER);
+        ProcedureCall call = s.createStoredProcedureCall(Constantes.sp_usuario_insert);
+        call.registerParameter(1,String.class, ParameterMode.IN);
+        call.setParameter(1,registerUserBean.getApePat());
+
+
 
         return null;
     }
