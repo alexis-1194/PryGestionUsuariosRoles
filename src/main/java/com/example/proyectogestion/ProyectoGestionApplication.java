@@ -9,7 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @RequiredArgsConstructor
 public class ProyectoGestionApplication {
 
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+//    private final BCryptPasswordEncoder bCryptPasswordEncoder;
     public static void main(String[] args) {
         SpringApplication.run(ProyectoGestionApplication.class, args);
     }
