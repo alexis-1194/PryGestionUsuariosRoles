@@ -27,12 +27,8 @@ public class ExtraController {
 
     @GetMapping(value = "/productos/{limit}", produces = "application/json")
     public Response listarProductos(@PathVariable Integer limit){
-        return extraService.getProdcutos(limit);
+        return extraService.getProductos(limit);
     }
 
-    @GetMapping(value = "/yale", produces = "application/json")
-    public String test(){
-      return  "Gordita te extraño";
-    }
 
 }

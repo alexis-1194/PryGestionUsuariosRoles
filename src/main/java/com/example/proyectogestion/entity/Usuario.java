@@ -12,10 +12,8 @@ public class Usuario {
 
     @JsonProperty("usu_id")
     private BigDecimal usuId;
-    @JsonProperty("usu_nombres")
-    private String usuNombres;
-    @JsonProperty("usu_apellidos")
-    private String usuApellidos;
+    @JsonProperty("persona_id")
+    private BigDecimal personaId;
     @JsonProperty("usu_email")
     private String usuEmail;
     @JsonProperty("habilitado")

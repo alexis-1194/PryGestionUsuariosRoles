@@ -9,11 +9,11 @@ import java.math.BigDecimal;
 @Data
 @NoArgsConstructor
 public class UsuarioPerfil {
-    @JsonProperty("usu_id")
-    private BigDecimal usuId;
-    @JsonProperty("perfil_id")
+    private BigDecimal idUsuPerfil;
+    @JsonProperty("usu_perfil_estado")
+    private Character usuPerfilEstado;
+    private BigDecimal usuAreaId;
     private BigDecimal perfilId;
-    @JsonProperty("estado_usu_perfil")
-    private Character estadoUsuPerfil;
+    private BigDecimal rolId;
 
 }

@@ -108,7 +108,7 @@ public class ExtraServiceImpl implements ExtraService {
     }
 
     @Override
-    public Response getProdcutos(Integer p_limit) {
+    public Response getProductos(Integer p_limit) {
         Response response = new Response();
         Map<String, Object> result = new HashMap<>();
         try {

@@ -12,8 +12,8 @@ public class Perfil {
 
     @JsonProperty("perfil_id")
     private BigDecimal perfilId;
-    @JsonProperty("perfil_des")
-    private String perfilDes;
+    @JsonProperty("nombre")
+    private String nombre;
     @JsonProperty("perfil_estado")
     private Character perfilEstado;
 

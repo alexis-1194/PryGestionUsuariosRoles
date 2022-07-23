@@ -12,6 +12,8 @@ public class Area {
 
     @JsonProperty("perfil_id")
     private BigDecimal areaId;
+    @JsonProperty("area_des")
+    private String areaDes;
     @JsonProperty("area_abrev")
     private String areaAbrev;
     @JsonProperty("area_estado")

@@ -9,11 +9,11 @@ import java.math.BigDecimal;
 @Data
 @NoArgsConstructor
 public class Panel {
-    @JsonProperty("vista_id")
-    private BigDecimal vistaId;
-    @JsonProperty("vista_des")
-    private String vistaDes;
-    @JsonProperty("vista_estado")
-    private Character vistaEstado;
+    @JsonProperty("panel_id")
+    private BigDecimal panelId;
+    @JsonProperty("panel_des")
+    private String panelDes;
+    @JsonProperty("panel_estado")
+    private Character panelEstado;
 
 }
