@@ -84,4 +84,64 @@ public class ExtraRepositoryImpl implements ExtraRepository {
         result.put("OUT_LIST",list);
         return result;
     }
+
+    @Override
+    public Map<String, Object> getJuegos(Integer p_limit) {
+        Session s = em.unwrap(Session.class);
+        ProcedureCall call = s.createStoredProcedureCall(Constantes.SP_LIST_JUEGOS);
+        call.registerParameter(1,Integer.class, ParameterMode.IN);
+        call.setParameter(1, p_limit);
+        call.registerParameter(2, String.class,ParameterMode.OUT);
+        call.registerParameter(3, String.class,ParameterMode.OUT);
+        call.registerParameter(4, Integer.class,ParameterMode.OUT);
+        call.registerParameter(5, Class.class,ParameterMode.REF_CURSOR);
+        call.execute();
+        Map<String, Object> result = new HashMap<>();
+        result.put("OUT_CODIGO",call.getOutputParameterValue(2));
+        result.put("OUT_MSG",call.getOutputParameterValue(3));
+        result.put("OUT_CANTIDAD",call.getOutputParameterValue(4));
+        List<Object> list = (List<Object>) call.getResultList();
+        result.put("OUT_LIST",list);
+        return result;
+    }
+
+    @Override
+    public Map<String, Object> getAlmacen(Integer p_limit) {
+        Session s = em.unwrap(Session.class);
+        ProcedureCall call = s.createStoredProcedureCall(Constantes.SP_LIST_ALMACEN);
+        call.registerParameter(1,Integer.class, ParameterMode.IN);
+        call.setParameter(1, p_limit);
+        call.registerParameter(2, String.class,ParameterMode.OUT);
+        call.registerParameter(3, String.class,ParameterMode.OUT);
+        call.registerParameter(4, Integer.class,ParameterMode.OUT);
+        call.registerParameter(5, Class.class,ParameterMode.REF_CURSOR);
+        call.execute();
+        Map<String, Object> result = new HashMap<>();
+        result.put("OUT_CODIGO",call.getOutputParameterValue(2));
+        result.put("OUT_MSG",call.getOutputParameterValue(3));
+        result.put("OUT_CANTIDAD",call.getOutputParameterValue(4));
+        List<Object> list = (List<Object>) call.getResultList();
+        result.put("OUT_LIST",list);
+        return result;
+    }
+
+    @Override
+    public Map<String, Object> getProveedores(Integer p_limit) {
+        Session s = em.unwrap(Session.class);
+        ProcedureCall call = s.createStoredProcedureCall(Constantes.SP_LIST_PROVEEDOR);
+        call.registerParameter(1,Integer.class, ParameterMode.IN);
+        call.setParameter(1, p_limit);
+        call.registerParameter(2, String.class,ParameterMode.OUT);
+        call.registerParameter(3, String.class,ParameterMode.OUT);
+        call.registerParameter(4, Integer.class,ParameterMode.OUT);
+        call.registerParameter(5, Class.class,ParameterMode.REF_CURSOR);
+        call.execute();
+        Map<String, Object> result = new HashMap<>();
+        result.put("OUT_CODIGO",call.getOutputParameterValue(2));
+        result.put("OUT_MSG",call.getOutputParameterValue(3));
+        result.put("OUT_CANTIDAD",call.getOutputParameterValue(4));
+        List<Object> list = (List<Object>) call.getResultList();
+        result.put("OUT_LIST",list);
+        return result;
+    }
 }

@@ -16,19 +16,33 @@ public class ExtraController {
     private final ExtraService extraService;
 
     @GetMapping(value = "/clientes/{limit}", produces = "application/json")
-    public Response listarClientes(@PathVariable Integer limit){
+    public Response listarClientes(@PathVariable Integer limit) {
         return extraService.getClientes(limit);
     }
 
     @GetMapping(value = "/categorias/{limit}", produces = "application/json")
-    public Response listarCategorias(@PathVariable Integer limit){
+    public Response listarCategorias(@PathVariable Integer limit) {
         return extraService.getCategorias(limit);
     }
 
     @GetMapping(value = "/productos/{limit}", produces = "application/json")
-    public Response listarProductos(@PathVariable Integer limit){
+    public Response listarProductos(@PathVariable Integer limit) {
         return extraService.getProductos(limit);
     }
 
+    @GetMapping(value = "/juegos/{limit}", produces = "application/json")
+    public Response listarJuegos(@PathVariable Integer limit) {
+        return extraService.getJuegos(limit);
+    }
+
+    @GetMapping(value = "/almacen/{limit}", produces = "application/json")
+    public Response listarAlmacen(@PathVariable Integer limit) {
+        return extraService.getAlmacen(limit);
+    }
+
+    @GetMapping(value = "/proveedores/{limit}", produces = "application/json")
+    public Response listarProveedores(@PathVariable Integer limit) {
+        return extraService.getProveedores(limit);
+    }
 
 }

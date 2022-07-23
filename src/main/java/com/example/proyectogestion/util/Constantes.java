@@ -7,6 +7,10 @@ public class Constantes {
     public static final String SP_LIST_CLIENTES = "PKG_PRUEBAS_GENERALES.SP_LIST_CLIENTES";
     public static final String SP_LIST_PRODUCTOS = "PKG_PRUEBAS_GENERALES.SP_LIST_PRODUCTOS";
 
+    public static final String SP_LIST_JUEGOS = "PKG_PRUEBAS_GENERALES.SP_LIST_JUEGOS";
+    public static final String SP_LIST_ALMACEN = "PKG_PRUEBAS_GENERALES.SP_LIST_ALMACEN";
+    public static final String SP_LIST_PROVEEDOR = "PKG_PRUEBAS_GENERALES.SP_LIST_PROVEEDOR";
+
     /*
     * #  datasource:
     #    url: jdbc:oracle:thin:@localhost:1521/xe

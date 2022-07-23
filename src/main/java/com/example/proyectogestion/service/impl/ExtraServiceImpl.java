@@ -1,8 +1,6 @@
 package com.example.proyectogestion.service.impl;
 
-import com.example.proyectogestion.entity.Categoria;
-import com.example.proyectogestion.entity.Cliente;
-import com.example.proyectogestion.entity.Producto;
+import com.example.proyectogestion.entity.*;
 import com.example.proyectogestion.repository.ExtraRepository;
 import com.example.proyectogestion.response.Response;
 import com.example.proyectogestion.service.ExtraService;
@@ -39,7 +37,7 @@ public class ExtraServiceImpl implements ExtraService {
                 response.setDeveloperMessage("OK");
                 List<Object> listaPrevia = (List<Object>) result.get("OUT_LIST");
                 List<Cliente> listaFinal = listaPrevia.stream().map(p -> new Cliente(p)).collect(Collectors.toList());
-                response.setData(Map.of("data",listaFinal,"cantidad",result.get("OUT_CANTIDAD")));
+                response.setData(Map.of("data", listaFinal, "cantidad", result.get("OUT_CANTIDAD")));
                 response.setError(null);
             }
             if (result.get("OUT_CODIGO").equals(Constantes.CODIGO_NO_SE_ENCONTRARON_DATOS)) {
@@ -79,7 +77,7 @@ public class ExtraServiceImpl implements ExtraService {
                 response.setDeveloperMessage("SUCCESS");
                 List<Object> listaPrevia = (List<Object>) result.get("OUT_LIST");
                 List<Categoria> listaFinal = listaPrevia.stream().map(p -> new Categoria(p)).collect(Collectors.toList());
-                response.setData(Map.of("data",listaFinal,"cantidad",result.get("OUT_CANTIDAD")));
+                response.setData(Map.of("data", listaFinal, "cantidad", result.get("OUT_CANTIDAD")));
                 response.setError(null);
             }
             if (result.get("OUT_CODIGO").equals(Constantes.CODIGO_NO_SE_ENCONTRARON_DATOS)) {
@@ -121,7 +119,7 @@ public class ExtraServiceImpl implements ExtraService {
                 response.setDeveloperMessage("OK");
                 List<Object> listaPrevia = (List<Object>) result.get("OUT_LIST");
                 List<Producto> listaFinal = listaPrevia.stream().map(p -> new Producto(p)).collect(Collectors.toList());
-                response.setData(Map.of("data",listaFinal,"cantidad",result.get("OUT_CANTIDAD")));
+                response.setData(Map.of("data", listaFinal, "cantidad", result.get("OUT_CANTIDAD")));
                 response.setError(null);
             }
             if (result.get("OUT_CODIGO").equals(Constantes.CODIGO_NO_SE_ENCONTRARON_DATOS)) {
@@ -146,6 +144,127 @@ public class ExtraServiceImpl implements ExtraService {
             response.setError(error);
         }
 
+        return response;
+    }
+
+    @Override
+    public Response getJuegos(Integer p_limit) {
+        Response response = new Response();
+        Map<String, Object> result = new HashMap<>();
+        try {
+            result = extraRepository.getJuegos(p_limit);
+            if (result.get("OUT_CODIGO").equals(Constantes.CODIGO_OK)) {
+                response.setStatusCode(result.get("OUT_CODIGO").toString());
+                response.setHttpStatus(HttpStatus.OK);
+                response.setReason("OK");
+                response.setMessage(result.get("OUT_MSG").toString());
+                response.setDeveloperMessage("OK");
+                List<Object> listaPrevia = (List<Object>) result.get("OUT_LIST");
+                List<Juegos> listaFinal = listaPrevia.stream().map(p -> new Juegos(p)).collect(Collectors.toList());
+                response.setData(Map.of("data", listaFinal, "cantidad", result.get("OUT_CANTIDAD")));
+                response.setError(null);
+            }
+            if (result.get("OUT_CODIGO").equals(Constantes.CODIGO_NO_SE_ENCONTRARON_DATOS)) {
+                response.setStatusCode(result.get("OUT_CODIGO").toString());
+                response.setHttpStatus(HttpStatus.OK);
+                response.setReason("OK");
+                response.setMessage(result.get("OUT_MSG").toString());
+                response.setDeveloperMessage("OK");
+                response.setData(null);
+                response.setError(null);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.setStatusCode(Constantes.CODIGO_ERROR);
+            response.setHttpStatus(HttpStatus.INTERNAL_SERVER_ERROR);
+            response.setReason("ERROR");
+            response.setMessage(result.get("OUT_MSG").toString());
+            response.setDeveloperMessage(e.getMessage());
+            Map<String, Object> error = new HashMap<>();
+            error.put("trama", e.getStackTrace());
+        }
+        return response;
+    }
+
+    @Override
+    public Response getAlmacen(Integer p_limit) {
+        Response response = new Response();
+        Map<String, Object> result = new HashMap<>();
+        try {
+            result = extraRepository.getAlmacen(p_limit);
+            if (result.get("OUT_CODIGO").equals(Constantes.CODIGO_OK)) {
+                response.setStatusCode(result.get("OUT_CODIGO").toString());
+                response.setHttpStatus(HttpStatus.OK);
+                response.setReason("OK");
+                response.setMessage(result.get("OUT_MSG").toString());
+                response.setDeveloperMessage("OK");
+                List<Object> listaPrevia = (List<Object>) result.get("OUT_LIST");
+                List<Almacen> listaFinal = listaPrevia.stream().map(p -> new Almacen(p)).collect(Collectors.toList());
+                response.setData(Map.of("data", listaFinal, "cantidad", result.get("OUT_CANTIDAD")));
+                response.setError(null);
+            }
+            if (result.get("OUT_CODIGO").equals(Constantes.CODIGO_NO_SE_ENCONTRARON_DATOS)) {
+                response.setStatusCode(result.get("OUT_CODIGO").toString());
+                response.setHttpStatus(HttpStatus.OK);
+                response.setReason("OK");
+                response.setMessage(result.get("OUT_MSG").toString());
+                response.setDeveloperMessage("OK");
+                response.setData(null);
+                response.setError(null);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.setStatusCode(Constantes.CODIGO_ERROR);
+            response.setHttpStatus(HttpStatus.INTERNAL_SERVER_ERROR);
+            response.setReason("ERROR");
+            response.setMessage(result.get("OUT_MSG").toString());
+            response.setDeveloperMessage(e.getMessage());
+            Map<String, Object> error = new HashMap<>();
+            error.put("trama", e.getStackTrace());
+            response.setError(error);
+
+        }
+        return response;
+    }
+
+    @Override
+    public Response getProveedores(Integer p_limit) {
+        Response response = new Response();
+        Map<String, Object> result = new HashMap<>();
+        try {
+            result = extraRepository.getProveedores(p_limit);
+            if (result.get("OUT_CODIGO").equals(Constantes.CODIGO_OK)) {
+                response.setStatusCode(result.get("OUT_CODIGO").toString());
+                response.setHttpStatus(HttpStatus.OK);
+                response.setReason("OK");
+                response.setMessage(result.get("OUT_MSG").toString());
+                response.setDeveloperMessage("OK");
+                List<Object> listaPrevia = (List<Object>) result.get("OUT_LIST");
+                List<Proveedores> listaFinal = listaPrevia.stream().map(p -> new Proveedores(p)).collect(Collectors.toList());
+                response.setData(Map.of("data", listaFinal, "cantidad", result.get("OUT_CANTIDAD")));
+                response.setError(null);
+            }
+            if (result.get("OUT_CODIGO").equals(Constantes.CODIGO_NO_SE_ENCONTRARON_DATOS)) {
+                response.setStatusCode(result.get("OUT_CODIGO").toString());
+                response.setHttpStatus(HttpStatus.OK);
+                response.setReason("OK");
+                response.setMessage(result.get("OUT_MSG").toString());
+                response.setDeveloperMessage("OK");
+                response.setData(null);
+                response.setError(null);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.setStatusCode(Constantes.CODIGO_ERROR);
+            response.setHttpStatus(HttpStatus.INTERNAL_SERVER_ERROR);
+            response.setReason("ERROR");
+            response.setMessage(result.get("OUT_MSG").toString());
+            response.setDeveloperMessage(e.getMessage());
+            Map<String, Object>
+                    error = new HashMap<>();
+            error.put("trama", e.getStackTrace());
+            response.setError(error);
+        }
         return response;
     }
 }

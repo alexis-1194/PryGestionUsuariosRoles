@@ -13,4 +13,10 @@ public interface ExtraRepository {
 
     Map<String,Object> getProductos(Integer p_limit);
 
+    Map<String,Object> getJuegos(Integer p_limit);
+
+    Map<String,Object> getAlmacen(Integer p_limit);
+
+    Map<String,Object> getProveedores(Integer p_limit);
+
 }
