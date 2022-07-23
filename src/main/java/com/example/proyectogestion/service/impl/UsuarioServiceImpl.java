@@ -32,18 +32,20 @@ public class UsuarioServiceImpl implements UsuarioService {
 
             //validando si el usuario ya existe
             if(getUsuariosCount(registerUserBean.getUsuEmail())==0) {
-                response.setStatusCode(result.get("OUT_CODIGO").toString());
+                response.setStatusCode("9999");
                 response.setHttpStatus(HttpStatus.OK);
                 response.setReason("OK");
                 response.setMessage("El usuario ya existe en la bd");
                 response.setDeveloperMessage("OK");
                 response.setData(null);
                 response.setError(null);
+                return response;
             }
 
             result = usuarioRepository.register(registerUserBean);
             //paso
             if (result.get("OUT_CODIGO").equals(Constantes.CODIGO_OK)) {
+                //OUT_USUARIO_ID
                 response.setStatusCode(result.get("OUT_CODIGO").toString());
                 response.setHttpStatus(HttpStatus.OK);
                 response.setReason("OK");
@@ -67,7 +69,6 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public Integer getUsuariosCount(String username) {
-        return usuarioRepository.getUsuariosCount(username).equals(Constantes.CODIGO_OK)?
-                1:0;
+        return usuarioRepository.getUsuariosCount(username);
     }
 }

@@ -36,7 +36,7 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
         call.setParameter(5, registerUserBean.getUsuPwd());
         call.registerParameter(6, BigDecimal.class, ParameterMode.OUT);
         call.registerParameter(7, String.class, ParameterMode.OUT);
-        call.registerParameter(8, Integer.class, ParameterMode.OUT);
+        call.registerParameter(8, String.class, ParameterMode.OUT);
         call.execute();
         Map<String, Object> result = new HashMap<>();
         result.put("OUT_USUARIO_ID", call.getOutputParameterValue(6));
@@ -54,7 +54,7 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
         call.setParameter(1, username);
         call.registerParameter(2, String.class, ParameterMode.OUT);
         call.execute();
-        Integer codigo = (Integer) call.getOutputParameterValue(2);
+        Integer codigo =  call.getOutputParameterValue(2).equals("0000") ? 1 : 0;
         return codigo;
     }
 }
