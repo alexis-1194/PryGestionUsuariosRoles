@@ -12,6 +12,7 @@ public class Constantes {
     public static final String SP_LIST_PROVEEDOR = "PKG_PRUEBAS_GENERALES.SP_LIST_PROVEEDORES";
 
     public static final String sp_usuario_exists = "PKG_USUARIOS.sp_usuario_exists";
+    public static final String sp_usuario_insert = "PKG_USUARIOS.sp_ins_persona_usuario";
 
     /*
     * #  datasource:

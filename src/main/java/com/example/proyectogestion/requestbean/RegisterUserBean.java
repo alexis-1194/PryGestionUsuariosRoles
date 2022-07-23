@@ -15,5 +15,7 @@ public class RegisterUserBean {
     private String apePat;
     private String apeMat;
     private String nombres;
+    private String usuEmail;
+    private String usuPwd;
 
 }
