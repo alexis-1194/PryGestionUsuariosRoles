@@ -189,7 +189,44 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public ConfirmationToken getToken(String token){
-        return null;
+    public Map<String,Object> getToken(String token){
+        return usuarioRepository.getToken(token);
+    }
+
+    @Override
+    public String confirmToken(String token) {
+        Map<String,Object> map = getToken(token);
+        try {
+        if(map.get("OUT_CODIGO").equals(Constantes.TOKEN_CONFIRMADO)){
+            return "Token already confirmed";
+        }
+//        else if(map.get("OUT_CODIGO").equals(Constantes.TOKEN_INVALIDO)){
+//            return "Token invalid";
+//        }
+        else if(map.get("OUT_CODIGO").equals(Constantes.TOKEN_EXPIRADO)){
+            return "Token expired";
+        }
+        else if(map.get("OUT_CODIGO").equals(Constantes.TOKEN_NO_ENCONTRADO)){
+            return "Token not found";
+        }
+        else{
+           //Realizar el update para el user y cambiar el token a confirmado
+//            usuarioRepository.confirmToken(token);
+            //actualizar el token
+            ConfirmationToken confirmationToken = new ConfirmationToken();
+            confirmationToken.setTokenId((BigDecimal) map.get("OUT_TOKEN_ID"));
+            confirmationToken.setUsuId((BigDecimal) map.get("OUT_USU_ID"));
+            Map<String,Object> enableFull = usuarioRepository.guardarToken(confirmationToken);
+            if(enableFull.get("OUT_CODIGO").equals(Constantes.CODIGO_OK)){
+                return "Token confirmed";
+            }
+            else{
+                return (String) enableFull.get("OUT_MSG");
+            }
+        }
+
+        }catch (Exception e){
+            return "Error";
+        }
     }
 }

@@ -11,6 +11,7 @@ public class Constantes {
 
     public static final String TOKEN_CONFIRMADO = "0001";
     public static final String TOKEN_EXPIRADO = "0002";
+    public static final String TOKEN_NO_ENCONTRADO = "0003";
 
     public static final String SCHEMA = "yalerolev1";
     public static final String CATALOG = "PKG_PRUEBAS_GENERALES";

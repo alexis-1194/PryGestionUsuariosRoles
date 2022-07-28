@@ -12,6 +12,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.SqlOutParameter;
 import org.springframework.jdbc.core.SqlParameter;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Repository;
 
@@ -95,7 +97,6 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
         jdbcCall.withProcedureName("sp_insup_confirmation_token");
         jdbcCall.declareParameters(
                 new SqlParameter("p_token_id", OracleTypes.NUMBER),
-                new SqlParameter("p_confirmed_at", OracleTypes.DATE),
                 new SqlParameter("p_token", OracleTypes.VARCHAR),
                 new SqlParameter("p_usu_id", OracleTypes.NUMBER),
                 new SqlOutParameter("OUT_CODIGO",OracleTypes.VARCHAR),
@@ -105,7 +106,6 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
         jdbcCall.withoutProcedureColumnMetaDataAccess();
         Map<String,Object> inParams = new HashMap<>();
         inParams.put("p_token_id",token.getTokenId());
-        inParams.put("p_confirmed_at",token.getConfirmedAt());
         inParams.put("p_token",token.getToken());
         inParams.put("p_usu_id",token.getUsuId());
         Map<String,Object> outParams = jdbcCall.execute(inParams);
@@ -116,16 +116,32 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
     }
 
     @Override
-    public ConfirmationToken getToken(String token) {
-
-        //Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-//        ProcedureCall call = s.createStoredProcedureCall(Constantes.sp_check_token);//
-//        call.registerParameter(1, String.class, ParameterMode.IN).enablePassingNulls(true);
-//        call.setParameter(1, token);
-//        call.registerParameter(2, String.class, ParameterMode.OUT);
-//        call.registerParameter(3, String.class, ParameterMode.OUT);
-//        call.execute();
-
-        return null;
+    public Map<String,Object> getToken(String token) {
+        //ACTUALIZAR EL CONFIRMET AT Y HABILITAR EL USUARIO DPS
+        //CREAR TODO EL MAPEO PARA EL USUARIO ADMIN Y COMENZAR CON EL MODULO DE OAUTH2 Y MODULO DE ADMIN
+        String poolConnection = "rockjdbc";
+        JdbcTemplate jdbcTemplate = context.getBean(poolConnection, JdbcTemplate.class);
+        SimpleJdbcCall jdbcCall = new SimpleJdbcCall(jdbcTemplate);
+        jdbcCall.withSchemaName(Constantes.SCHEMA);
+        jdbcCall.withCatalogName(Constantes.CATALOG);
+        jdbcCall.withProcedureName("sp_check_token");
+        jdbcCall.declareParameters(
+                new SqlParameter("p_token", OracleTypes.VARCHAR),
+                new SqlOutParameter("OUT_CODIGO",OracleTypes.VARCHAR),
+                new SqlOutParameter("OUT_MSG",OracleTypes.VARCHAR),
+                new SqlOutParameter("OUT_TOKEN_ID",OracleTypes.NUMBER),
+                new SqlOutParameter("OUT_USU_ID",OracleTypes.NUMBER)
+        );
+        jdbcCall.withoutProcedureColumnMetaDataAccess();
+        Map<String,Object> inParams = new HashMap<>();
+        inParams.put("p_token",token);
+        SqlParameterSource in = new MapSqlParameterSource(inParams);
+        Map<String,Object> execution = jdbcCall.execute(in);
+        Map<String,Object> result = new HashMap<>();
+        result.put("OUT_CODIGO", execution.get("OUT_CODIGO"));
+        result.put("OUT_MSG", execution.get("OUT_MSG"));
+        result.put("OUT_TOKEN_ID", execution.get("OUT_TOKEN_ID"));
+        result.put("OUT_USU_ID", execution.get("OUT_USU_ID"));
+        return result;
     }
 }

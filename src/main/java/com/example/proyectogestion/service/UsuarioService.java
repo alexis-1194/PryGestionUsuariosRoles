@@ -4,6 +4,8 @@ import com.example.proyectogestion.entity.ConfirmationToken;
 import com.example.proyectogestion.bean.RegisterUserBean;
 import com.example.proyectogestion.response.Response;
 
+import java.util.Map;
+
 public interface UsuarioService {
 
     Response register(RegisterUserBean registerUserBean);
@@ -12,6 +14,8 @@ public interface UsuarioService {
 
     Response saveToken(ConfirmationToken token);
 
-    ConfirmationToken getToken(String token);
+    Map<String,Object> getToken(String token);
+
+    String confirmToken(String token);
 
 }

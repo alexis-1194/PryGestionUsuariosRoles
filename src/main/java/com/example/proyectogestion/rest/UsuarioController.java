@@ -19,9 +19,8 @@ public class UsuarioController {
     }
 
     @GetMapping("/confirm")
-    public void confirm(@RequestParam("token") String token){
-
-        //return registrationService.confirmToken(token);
+    public String confirm(@RequestParam("token") String token){
+        return usuarioService.confirmToken(token);
     }
 
 }

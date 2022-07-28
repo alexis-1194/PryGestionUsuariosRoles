@@ -11,5 +11,5 @@ public interface UsuarioRepository {
     Map<String,Object> register(RegisterUserBean registerUserBean);
     Integer getUsuariosCount(String username);
     Map<String,Object> guardarToken(ConfirmationToken token);
-    ConfirmationToken getToken(String token);
+    Map<String,Object> getToken(String token);
 }
