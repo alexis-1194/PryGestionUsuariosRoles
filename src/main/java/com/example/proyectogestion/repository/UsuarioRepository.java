@@ -12,4 +12,5 @@ public interface UsuarioRepository {
     Integer getUsuariosCount(String username);
     Map<String,Object> guardarToken(ConfirmationToken token);
     Map<String,Object> getToken(String token);
+    Map<String,Object> getAreasUsuario(String email);
 }
