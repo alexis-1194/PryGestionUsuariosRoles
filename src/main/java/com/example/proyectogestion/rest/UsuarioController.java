@@ -1,6 +1,6 @@
 package com.example.proyectogestion.rest;
 
-import com.example.proyectogestion.requestbean.RegisterUserBean;
+import com.example.proyectogestion.bean.RegisterUserBean;
 import com.example.proyectogestion.response.Response;
 import com.example.proyectogestion.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +16,12 @@ public class UsuarioController {
     @PostMapping(value = "/registrar", produces = "application/json")
     public Response listarClientes(@RequestBody RegisterUserBean registerUserBean) {
         return usuarioService.register(registerUserBean);
+    }
+
+    @GetMapping("/confirm")
+    public void confirm(@RequestParam("token") String token){
+
+        //return registrationService.confirmToken(token);
     }
 
 }

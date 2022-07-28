@@ -28,16 +28,14 @@ public class ExtraServiceImpl implements ExtraService {
         Response response = new Response();
         Map<String, Object> result = new HashMap<>();
         try {
-            result = extraRepository.getClientes(p_limit);
+            result = extraRepository.getClientesV2(p_limit);
             if (result.get("OUT_CODIGO").equals(Constantes.CODIGO_OK)) {
                 response.setStatusCode(result.get("OUT_CODIGO").toString());
                 response.setHttpStatus(HttpStatus.OK);
                 response.setReason("OK");
                 response.setMessage(result.get("OUT_MSG").toString());
                 response.setDeveloperMessage("OK");
-                List<Object> listaPrevia = (List<Object>) result.get("OUT_LIST");
-                List<Cliente> listaFinal = listaPrevia.stream().map(p -> new Cliente(p)).collect(Collectors.toList());
-                response.setData(Map.of("data", listaFinal, "cantidad", result.get("OUT_CANTIDAD")));
+                response.setData(Map.of("data", result.get("OUT_LIST"), "cantidad", result.get("OUT_CANTIDAD")));
                 response.setError(null);
             }
             if (result.get("OUT_CODIGO").equals(Constantes.CODIGO_NO_SE_ENCONTRARON_DATOS)) {
@@ -75,9 +73,7 @@ public class ExtraServiceImpl implements ExtraService {
                 response.setReason("OK");
                 response.setMessage(result.get("OUT_MSG").toString());
                 response.setDeveloperMessage("SUCCESS");
-                List<Object> listaPrevia = (List<Object>) result.get("OUT_LIST");
-                List<Categoria> listaFinal = listaPrevia.stream().map(p -> new Categoria(p)).collect(Collectors.toList());
-                response.setData(Map.of("data", listaFinal, "cantidad", result.get("OUT_CANTIDAD")));
+                response.setData(Map.of("data", result.get("OUT_CURSOR"), "cantidad", result.get("OUT_CANTIDAD")));
                 response.setError(null);
             }
             if (result.get("OUT_CODIGO").equals(Constantes.CODIGO_NO_SE_ENCONTRARON_DATOS)) {
@@ -117,9 +113,9 @@ public class ExtraServiceImpl implements ExtraService {
                 response.setReason("OK");
                 response.setMessage(result.get("OUT_MSG").toString());
                 response.setDeveloperMessage("OK");
-                List<Object> listaPrevia = (List<Object>) result.get("OUT_LIST");
-                List<Producto> listaFinal = listaPrevia.stream().map(p -> new Producto(p)).collect(Collectors.toList());
-                response.setData(Map.of("data", listaFinal, "cantidad", result.get("OUT_CANTIDAD")));
+//                List<Object> listaPrevia = (List<Object>) result.get("OUT_LIST");
+//                List<Producto> listaFinal = listaPrevia.stream().map(p -> new Producto(p)).collect(Collectors.toList());
+                response.setData(Map.of("data", result.get("OUT_LIST"), "cantidad", result.get("OUT_CANTIDAD")));
                 response.setError(null);
             }
             if (result.get("OUT_CODIGO").equals(Constantes.CODIGO_NO_SE_ENCONTRARON_DATOS)) {
@@ -159,9 +155,7 @@ public class ExtraServiceImpl implements ExtraService {
                 response.setReason("OK");
                 response.setMessage(result.get("OUT_MSG").toString());
                 response.setDeveloperMessage("OK");
-                List<Object> listaPrevia = (List<Object>) result.get("OUT_LIST");
-                List<Juegos> listaFinal = listaPrevia.stream().map(p -> new Juegos(p)).collect(Collectors.toList());
-                response.setData(Map.of("data", listaFinal, "cantidad", result.get("OUT_CANTIDAD")));
+                response.setData(Map.of("data", result.get("OUT_LIST"), "cantidad", result.get("OUT_CANTIDAD")));
                 response.setError(null);
             }
             if (result.get("OUT_CODIGO").equals(Constantes.CODIGO_NO_SE_ENCONTRARON_DATOS)) {
@@ -198,9 +192,7 @@ public class ExtraServiceImpl implements ExtraService {
                 response.setReason("OK");
                 response.setMessage(result.get("OUT_MSG").toString());
                 response.setDeveloperMessage("OK");
-                List<Object> listaPrevia = (List<Object>) result.get("OUT_LIST");
-                List<Almacen> listaFinal = listaPrevia.stream().map(p -> new Almacen(p)).collect(Collectors.toList());
-                response.setData(Map.of("data", listaFinal, "cantidad", result.get("OUT_CANTIDAD")));
+                response.setData(Map.of("data", result.get("OUT_LIST"), "cantidad", result.get("OUT_CANTIDAD")));
                 response.setError(null);
             }
             if (result.get("OUT_CODIGO").equals(Constantes.CODIGO_NO_SE_ENCONTRARON_DATOS)) {
@@ -239,9 +231,7 @@ public class ExtraServiceImpl implements ExtraService {
                 response.setReason("OK");
                 response.setMessage(result.get("OUT_MSG").toString());
                 response.setDeveloperMessage("OK");
-                List<Object> listaPrevia = (List<Object>) result.get("OUT_LIST");
-                List<Proveedores> listaFinal = listaPrevia.stream().map(p -> new Proveedores(p)).collect(Collectors.toList());
-                response.setData(Map.of("data", listaFinal, "cantidad", result.get("OUT_CANTIDAD")));
+                response.setData(Map.of("data", result.get("OUT_LIST"), "cantidad", result.get("OUT_CANTIDAD")));
                 response.setError(null);
             }
             if (result.get("OUT_CODIGO").equals(Constantes.CODIGO_NO_SE_ENCONTRARON_DATOS)) {

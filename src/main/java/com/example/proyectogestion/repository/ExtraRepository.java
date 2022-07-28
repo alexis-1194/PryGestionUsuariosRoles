@@ -7,7 +7,6 @@ import java.util.Map;
 @Repository
 public interface ExtraRepository {
 
-    Map<String,Object> getClientes(Integer p_limit);
 
     Map<String,Object> getCategorias(Integer p_limit);
 
@@ -18,5 +17,7 @@ public interface ExtraRepository {
     Map<String,Object> getAlmacen(Integer p_limit);
 
     Map<String,Object> getProveedores(Integer p_limit);
+
+    Map<String,Object> getClientesV2(Integer p_limit);
 
 }
